@@ -21,9 +21,9 @@ def getResults():
     for result in draw_results:
         date = str(result.date)
         winning_numbers = ""
-        with open('result.csv', mode='a') as employee_file:
-            employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            employee_writer.writerow(result.numbers)
+        with open('result.csv', mode='a') as file:
+            writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            writer.writerow(result.numbers)
         for numbers in result.numbers:
             numberList.append(numbers)
             winning_numbers += "{0}\t".format(numbers)
