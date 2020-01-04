@@ -43,8 +43,8 @@ def most_common(L):
     count = 0
     min_index = len(L)
     for _, where in iterable:
-      count += 1
-      min_index = min(min_index, where)
+        count += 1
+        min_index = min(min_index, where)
     # print 'item %r, count %r, minind %r' % (item, count, min_index)
     return count, -min_index
   # pick the highest-count/earliest item
@@ -52,6 +52,7 @@ def most_common(L):
 
 def generateNumbers():
     numList = random.sample(range(1, 49), 7)
+    numList.sort()
     draw_results.append(DrawResult(datetime.datetime.now(), numList))
     return
 
@@ -59,9 +60,11 @@ def PopularSevenNumbers(numberList):
     common_nums = []
     popular_num_result = ""
     for i in range(7):   
-      common_nums.append(most_common(numberList))
-      popular_num_result += "{0}\t".format(most_common(numberList))
-      numberList = list(filter(lambda a: a != most_common(numberList), numberList))
+        common_nums.append(most_common(numberList))
+        numberList = list(filter(lambda a: a != most_common(numberList), numberList))
+    common_nums.sort()
+    for number in common_nums:
+        popular_num_result += "{0}\t".format(number)
     print("Popular Numbers : {0}".format(popular_num_result))
     return
 
@@ -69,6 +72,3 @@ initApp()
 getResults()
 PopularSevenNumbers(numberList)
 print("Most Common Number : {0}".format(most_common(numberList)))
-
-
-    
